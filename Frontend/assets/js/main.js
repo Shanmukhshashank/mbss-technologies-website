@@ -105,29 +105,76 @@ observer.observe(section);
 
 
 
-// Contact Form (Temporary)
+// MBSS Technologies Contact Form
 
-const form=document.querySelector("form");
+const contactForm = document.getElementById("contactForm");
 
-
-if(form){
-
-
-form.addEventListener("submit",(event)=>{
+const formMessage = document.getElementById("formMessage");
 
 
-event.preventDefault();
+if (contactForm) {
+
+    contactForm.addEventListener("submit", async function (event) {
+
+        event.preventDefault();
 
 
-alert(
-"Thank you for contacting MBSS Technologies. We will get back to you soon."
-);
+        const contactData = {
+
+            name: document.getElementById("name").value,
+
+            email: document.getElementById("email").value,
+
+            message: document.getElementById("message").value
+
+        };
 
 
-form.reset();
+        try {
+
+            const response = await fetch(
+                "http://localhost:8080/api/contact",
+                {
+
+                    method: "POST",
+
+                    headers: {
+
+                        "Content-Type": "application/json"
+
+                    },
+
+                    body: JSON.stringify(contactData)
+
+                }
+
+            );
 
 
-});
+            if (response.ok) {
 
+                formMessage.textContent =
+                    "Message sent successfully!";
+
+                contactForm.reset();
+
+            } else {
+
+                formMessage.textContent =
+                    "Failed to send message.";
+
+            }
+
+
+        } catch (error) {
+
+            console.error("Error:", error);
+
+            formMessage.textContent =
+                "Backend is not running. Please try again later.";
+
+        }
+
+    });
 
 }

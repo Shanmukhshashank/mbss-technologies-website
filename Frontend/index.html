@@ -332,22 +332,33 @@ Contact Us
 </h2>
 
 
-<form>
+<form id="contactForm">
 
+    <input
+        type="text"
+        id="name"
+        placeholder="Your Name"
+        required
+    >
 
-<input placeholder="Name">
+    <input
+        type="email"
+        id="email"
+        placeholder="Your Email"
+        required
+    >
 
+    <textarea
+        id="message"
+        placeholder="Your Message"
+        required
+    ></textarea>
 
-<input placeholder="Email">
+    <button type="submit">
+        Send Message
+    </button>
 
-
-<textarea placeholder="Message"></textarea>
-
-
-<button>
-Send Message
-</button>
-
+    <p id="formMessage"></p>
 
 </form>
 
