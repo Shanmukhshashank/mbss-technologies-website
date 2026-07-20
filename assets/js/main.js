@@ -123,36 +123,57 @@ if (contactForm) {
 
         try {
 
-            const response = await fetch(
-                "https://mbss-backend-api.onrender.com/api/contact",
-                {
-                    method: "POST",
+            let response;
 
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
+for (let attempt = 1; attempt <= 3; attempt++) {
 
-                    body: JSON.stringify({
-                        name: name,
-                        email: email,
-                        message: message
-                    })
-                }
-            );
+    try {
 
-            if (response.ok) {
+        response = await fetch(
+            "https://mbss-backend-api.onrender.com/api/contact",
+            {
+                method: "POST",
 
-                formMessage.textContent =
-                    "Message sent successfully!";
+                headers: {
+                    "Content-Type": "application/json"
+                },
 
-                contactForm.reset();
-
-            } else {
-
-                formMessage.textContent =
-                    "Failed to save message.";
-
+                body: JSON.stringify({
+                    name: name,
+                    email: email,
+                    message: message
+                })
             }
+        );
+
+        if (response.ok) {
+            break;
+        }
+
+    } catch (error) {
+
+        if (attempt === 3) {
+            throw error;
+        }
+
+    }
+
+    await new Promise(resolve => setTimeout(resolve, 5000));
+}
+
+if (response && response.ok) {
+
+    formMessage.textContent =
+        "Message sent successfully!";
+
+    contactForm.reset();
+
+} else {
+
+    formMessage.textContent =
+        "Failed to save message.";
+
+}
 
         } catch (error) {
 
