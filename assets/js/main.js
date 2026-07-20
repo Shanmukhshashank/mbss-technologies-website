@@ -150,39 +150,22 @@ if (contactForm) {
             } else {
 
                 formMessage.textContent =
-                    "Failed to send message.";
+                    "Failed to save message.";
 
             }
 
         } catch (error) {
 
-            console.error(error);
+            console.error("Error:", error);
 
             formMessage.textContent =
-                "Backend server is not running.";
+                "Cannot connect to backend.";
 
         }
 
     });
 
 }
-
-// Mobile Navigation Menu
-
-const menuToggle = document.getElementById("menuToggle");
-
-const navLinks = document.querySelector(".nav-links");
-
-if (menuToggle && navLinks) {
-
-    menuToggle.addEventListener("click", () => {
-
-        navLinks.classList.toggle("active");
-
-    });
-
-}
-
 // ================================
 // SCROLL REVEAL ANIMATION
 // ================================
