@@ -1899,3 +1899,114 @@ footer a:hover {
     z-index: 9999;
     transition: width 0.1s ease;
 }
+
+
+
+
+
+
+
+
+
+.about-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+    align-items: center;
+}
+
+.about-content {
+    text-align: left;
+}
+
+.about-values {
+    display: grid;
+    gap: 20px;
+}
+
+@media (max-width: 800px) {
+
+    .about-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .about-content {
+        text-align: center;
+    }
+
+}
+
+.founder-card img {
+    transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+.founder-card:hover img {
+    transform: scale(1.04);
+    filter: brightness(1.08);
+}
+
+
+.founder-card {
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 24px;
+    overflow: hidden;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.founder-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 45px rgba(139, 92, 246, 0.18);
+}
+
+
+.menu-toggle {
+    padding: 8px 12px;
+    border-radius: 10px;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.menu-toggle:hover {
+    background: rgba(139, 92, 246, 0.15);
+    transform: scale(1.05);
+}
+
+
+.logo {
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.04);
+}
+
+.logo span {
+    color: #8b5cf6;
+    opacity: 1;
+}
+
+
+.nav-links a {
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #8b5cf6;
+    transform: translateY(-2px);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+.navbar {
+    padding: 18px 24px;
+}
+
+
+header {
+    background: rgba(5, 5, 5, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
