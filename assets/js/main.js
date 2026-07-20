@@ -124,7 +124,7 @@ if (contactForm) {
         try {
 
             const response = await fetch(
-                "http://localhost:8080/api/contact",
+                "https://mbss-backend-api.onrender.com/api/contact",
                 {
                     method: "POST",
 
