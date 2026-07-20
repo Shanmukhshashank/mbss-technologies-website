@@ -109,47 +109,36 @@ observer.observe(section);
 
 const contactForm = document.getElementById("contactForm");
 
-const formMessage = document.getElementById("formMessage");
-
-
 if (contactForm) {
 
     contactForm.addEventListener("submit", async function (event) {
 
         event.preventDefault();
 
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const message = document.getElementById("message").value;
 
-        const contactData = {
-
-            name: document.getElementById("name").value,
-
-            email: document.getElementById("email").value,
-
-            message: document.getElementById("message").value
-
-        };
-
+        const formMessage = document.getElementById("formMessage");
 
         try {
 
             const response = await fetch(
                 "http://localhost:8080/api/contact",
                 {
-
                     method: "POST",
 
                     headers: {
-
                         "Content-Type": "application/json"
-
                     },
 
-                    body: JSON.stringify(contactData)
-
+                    body: JSON.stringify({
+                        name: name,
+                        email: email,
+                        message: message
+                    })
                 }
-
             );
-
 
             if (response.ok) {
 
@@ -165,16 +154,82 @@ if (contactForm) {
 
             }
 
-
         } catch (error) {
 
-            console.error("Error:", error);
+            console.error(error);
 
             formMessage.textContent =
-                "Backend is not running. Please try again later.";
+                "Backend server is not running.";
 
         }
 
     });
 
 }
+
+// Mobile Navigation Menu
+
+const menuToggle = document.getElementById("menuToggle");
+
+const navLinks = document.querySelector(".nav-links");
+
+if (menuToggle && navLinks) {
+
+    menuToggle.addEventListener("click", () => {
+
+        navLinks.classList.toggle("active");
+
+    });
+
+}
+
+// ================================
+// SCROLL REVEAL ANIMATION
+// ================================
+
+const revealElements = document.querySelectorAll(".reveal");
+
+const revealOnScroll = () => {
+
+    revealElements.forEach((element) => {
+
+        const windowHeight = window.innerHeight;
+
+        const elementTop =
+            element.getBoundingClientRect().top;
+
+        const revealPoint = 120;
+
+        if (elementTop < windowHeight - revealPoint) {
+            element.classList.add("active");
+        }
+
+    });
+
+};
+
+window.addEventListener("scroll", revealOnScroll);
+
+revealOnScroll();
+
+// ================================
+// PAGE LOADER
+// ================================
+
+window.addEventListener("load", () => {
+
+    const loader = document.getElementById("page-loader");
+
+    if (loader) {
+        loader.classList.add("hidden");
+    }
+
+});
+
+window.addEventListener("load", function () {
+    const loader = document.getElementById("page-loader");
+
+    if (loader) {
+        loader.classList.add("hidden");
+    }
+});
