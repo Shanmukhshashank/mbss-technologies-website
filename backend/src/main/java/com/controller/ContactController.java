@@ -27,8 +27,14 @@ public class ContactController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Contact>> getAllContacts() {
+public ResponseEntity<List<Contact>> getAllContacts(
+        @RequestHeader(value = "X-Admin-Key", required = false) String adminKey) {
 
-        return ResponseEntity.ok(contactRepository.findAll());
+if (!System.getenv("ADMIN_KEY").equals(adminKey)) {
+        return ResponseEntity.status(401).build();
     }
+
+    return ResponseEntity.ok(contactRepository.findAll());
+}
+
 }
